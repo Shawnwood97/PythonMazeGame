@@ -1,5 +1,7 @@
+from exceptions import NoLeavingException, NoWallRununing
 from gameboard import GameBoard
 from player import Player
+import traceback
 
 print("Welcome to the game!")
 print("Instructions: ")
@@ -19,28 +21,45 @@ print("-----------------------------")
 board = GameBoard()
 
 # Set player to Player, passing args 3 and 2 for position on row/column
-player = Player(3, 2)
+player = Player(19, 20)
+
 
 while True:
-    board.printBoard(player.rowPosition, player.columnPosition)
-    selection = input("Make a move: ")
-    # TODO
-    # Move the player through the boardW
-    # Check if the player has won, if so print a message and break the loop!
-
-    # Conditional that checks the upcoming position and if it is valid, moves the player. 
+  board.printBoard(player.rowPosition, player.columnPosition)
+  print('-----------------------------')
+  selection = input("Make a move: ")
+  # TODO
+  # Move the player through the board
+  # Check if the player has won, if so print a message and break the loop!
+  # Conditional that checks the upcoming position and if it is valid, moves the player.
+  try:
     if(selection == 'w' and board.checkMove(player.rowPosition - 1, player.columnPosition)):
-        player.moveUp()
+      player.moveUp()
     elif(selection == 'a' and board.checkMove(player.rowPosition, player.columnPosition - 1)):
-        player.moveLeft()
+      player.moveLeft()
     elif(selection == 's' and board.checkMove(player.rowPosition + 1, player.columnPosition)):
-        player.moveDown()
+      player.moveDown()
     elif(selection == 'd' and board.checkMove(player.rowPosition, player.columnPosition + 1)):
-        player.moveRight()
+      player.moveRight()
     else:
-        print('Error: Please enter a valid movement command!')
+      print('Error: Please enter a valid movement command!')
 
-    # Game won logic, seems to work well.... for now! :)
-    if(board.checkWin(player.rowPosition, player.columnPosition)):
-        print('🎉Congrats, You have won!🎉')
-        break
+  except NoLeavingException:
+    print('You can\'t leave, WIMP!')
+
+  except NoWallRununing:
+    print("Can\'t walk on walls, nerd!")
+
+  # except IndexError:
+  #   print('You can\'t leave, WIMP!')
+
+  except:
+    print('There was an error!')
+    traceback.print_exc()
+
+  # Game won logic, seems to work well.... for now! :)
+  if(board.checkWin(player.rowPosition, player.columnPosition)):
+    board.printBoard(player.rowPosition, player.columnPosition)
+    print('-----------------------------')
+    print('🎉Congrats, You have won!🎉')
+    break
