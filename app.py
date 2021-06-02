@@ -22,6 +22,9 @@ board = GameBoard()
 player = Player(3, 2)
 
 while True:
+    if(player.rowPosition == board.winningRow and player.columnPosition == board.winningColumn):
+        print('Congrats, You have won!')
+        break
     board.printBoard(player.rowPosition, player.columnPosition)
     selection = input("Make a move: ")
     # TODO
