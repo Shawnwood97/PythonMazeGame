@@ -22,22 +22,25 @@ board = GameBoard()
 player = Player(3, 2)
 
 while True:
-    if(player.rowPosition == board.winningRow and player.columnPosition == board.winningColumn):
-        print('Congrats, You have won!')
-        break
     board.printBoard(player.rowPosition, player.columnPosition)
     selection = input("Make a move: ")
     # TODO
     # Move the player through the boardW
     # Check if the player has won, if so print a message and break the loop!
 
-    if(selection == 'w'):
+    # Conditional that checks the upcoming position and if it is valid, moves the player. 
+    if(selection == 'w' and board.checkMove(player.rowPosition - 1, player.columnPosition)):
         player.moveUp()
-    elif(selection == 'a'):
+    elif(selection == 'a' and board.checkMove(player.rowPosition, player.columnPosition - 1)):
         player.moveLeft()
-    elif(selection == 's'):
+    elif(selection == 's' and board.checkMove(player.rowPosition + 1, player.columnPosition)):
         player.moveDown()
-    elif(selection == 'd'):
+    elif(selection == 'd' and board.checkMove(player.rowPosition, player.columnPosition + 1)):
         player.moveRight()
     else:
         print('Error: Please enter a valid movement command!')
+
+    # Game won logic, seems to work well.... for now! :)
+    if(board.checkWin(player.rowPosition, player.columnPosition)):
+        print('🎉Congrats, You have won!🎉')
+        break
