@@ -41,7 +41,7 @@ class GameBoard:
           print(self.board[i][j], end="")
       print("")
       counter = 0
-      while counter < 5:
+      while counter < len(self.coinRow):
         self.board[self.coinRow[counter]][self.coinColumn[counter]] = '🟨'
         counter = counter + 1
 
