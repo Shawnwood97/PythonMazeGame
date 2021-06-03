@@ -32,6 +32,13 @@ class GameBoard:
       ["🟫", "⬛", "⬛", "⬛", "⬛", "⬛", "🟫", "⬛", "🟫", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "🟦"],
       ["🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫"],
     ] 
+  
+  def getCoins(self):
+    counter = 0
+    while counter < len(self.coinRow):
+      self.board[self.coinRow[counter]][self.coinColumn[counter]] = '🟨'
+      counter = counter + 1
+    
   def printBoard(self, playerRow, playerColumn):
     for i in range(len(self.board)):
       for j in range(len(self.board[i])):
@@ -40,10 +47,11 @@ class GameBoard:
         else:
           print(self.board[i][j], end="")
       print("")
-      counter = 0
-      while counter < len(self.coinRow):
-        self.board[self.coinRow[counter]][self.coinColumn[counter]] = '🟨'
-        counter = counter + 1
+      self.getCoins()
+      # counter = 0
+      # while counter < len(self.coinRow):
+      #   self.board[self.coinRow[counter]][self.coinColumn[counter]] = '🟨'
+      #   counter = counter + 1
 
     # changed the return False to a raised exception to avoid double error from movement else block in app.py
   def checkMove(self, testRow, testColumn):
