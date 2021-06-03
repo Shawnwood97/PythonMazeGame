@@ -23,7 +23,6 @@ board = GameBoard()
 # Set player to Player, passing args 3 and 2 for position on row/column
 player = Player(19, 20)
 
-
 while True:
   board.printBoard(player.rowPosition, player.columnPosition)
   print('-----------------------------')
@@ -44,14 +43,17 @@ while True:
     else:
       print('Error: Please enter a valid movement command!')
 
+  # If player has moved off of the starting🟦 block and tries to move back onto it.
   except NoLeavingException:
     print('You can\'t leave, WIMP!')
 
+  # if the player tries to walk onto a wall🟫
   except NoWallRununing:
     print("Can\'t walk on walls, nerd!")
 
-  # except IndexError:
-  #   print('You can\'t leave, WIMP!')
+  # If player is on the starting🟦 block and tries to step out of the game bounds.
+  except IndexError:
+    print('You can\'t leave, WIMP!')
 
   except:
     print('There was an error!')

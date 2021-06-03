@@ -1,8 +1,8 @@
 class Coins:
   
   def __init__(self, coinRow, coinColumn):
-    self.coinRow = coinRow
-    self.coinColumn = coinColumn
+    self.coinRow += coinRow
+    self.coinColumn += coinColumn
 
 
 # c1_row, c1_col, c2_row, c2_col, c3_row, c3_col, c4_row, c4_col, c5_row, c5_col

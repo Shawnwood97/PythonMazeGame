@@ -5,7 +5,9 @@ class GameBoard:
   def __init__(self):
     self.winningRow = 1
     self.winningColumn = 0
-    self.coinList = [Coins(1,1)]
+    # self.coinList = [Coins(1,1)]
+    self.coinRow = [4, 13, 19, 7, 9] #13, 19, 7, 9
+    self.coinColumn = [16, 11, 4, 3, 13] #
     # Thought you could confuse me with your list formatting, huh? :)
     self.board = [
       ["🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫", "🟫"],
@@ -38,8 +40,11 @@ class GameBoard:
         else:
           print(self.board[i][j], end="")
       print("")
-    for coin in self.coinList:
-      self.board[coin.coinRow][coin.coinColumn] = '🟨'
+      counter = 0
+      while counter < 5:
+        self.board[self.coinRow[counter]][self.coinColumn[counter]] = '🟨'
+        counter = counter + 1
+
     # changed the return False to a raised exception to avoid double error from movement else block in app.py
   def checkMove(self, testRow, testColumn):
       # if(self.board[testRow][testColumn].find("🟨") != -1):
