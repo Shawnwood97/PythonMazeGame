@@ -18,8 +18,8 @@ class Player:
   def moveRight(self):
     self.columnPosition = self.columnPosition + 1
 
-  def collectCoin(self, rowPosition, columnPosition, coinRow, coinColumn, board):
-    for i in range(len(board)):
-      for j in range(len(board[i])):
-        if(rowPosition and coinRow == '🟨' and columnPosition and coinColumn == '🟨'):
-          print('⬛', end='')
+  # def collectCoin(self, rowPosition, columnPosition, coinRow, coinColumn, board):
+  #   for i, row in enumerate(range(len(board[board]))):
+  #     for j, cell in enumerate(range(len(board[row]))):
+  #       if(rowPosition and coinRow == '🟨' and columnPosition and coinColumn == '🟨'):
+  #         print('⬛', end='')
